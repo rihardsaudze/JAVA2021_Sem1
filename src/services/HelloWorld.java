@@ -46,6 +46,8 @@ public class HelloWorld {
 		
 		//System.out.println(Exercises.pascalsTriangle(6));					//7
 		
-		System.out.println(Exercises.executeStringEquation("20+5*2+70"));	//8
+		//System.out.println(Exercises.executeStringEquation("20+5*2+70"));	//8
+		
+		System.out.println(Exercises.setOperations("[1, 2, 3, 4, 5, 6] * [3, 4, 5]"));
 	}
 }

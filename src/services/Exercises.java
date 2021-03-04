@@ -1,4 +1,5 @@
 package services;
+import java.util.ArrayList;
 import java.util.Random;
 import java.lang.Math;
 
@@ -239,6 +240,81 @@ public class Exercises {
 		}
 		
 		return res;
+	}
+	
+	public static String setOperations(String input) {
+		String result = "";
+		int i;
+		ArrayList<Integer> arr1 = new ArrayList<>(), arr2 = new ArrayList<>(), arrResult = new ArrayList<>();
+		char c, mode = 0;
+		
+		for (i = 0; i < input.length(); i++) {			// fill up 1st array with values and detect mode
+			c = input.charAt(i);
+			if (c >= '0' && c <= '9') {
+				arr1.add(c - '0');
+			} else if (c == '+' || c == '-' || c == '*') {
+				mode = c;
+				break;
+			}
+		}
+		
+		for ( ; i < input.length(); i++) {			// fill up 2nd array with values
+			c = input.charAt(i);
+			if (c >= '0' && c <= '9') {
+				arr2.add(c - '0');
+			}
+		}
+		System.out.println(arr1);
+		System.out.println(arr2);
+		System.out.println(mode);
+		if (mode == '+') {
+			arrResult.add(arr1.get(0));
+			for (i = 1; i < arr1.size(); i++) {
+				if (arrResult.contains(arr1.get(i))) {
+					continue;
+				} else {
+					arrResult.add(arr1.get(i));
+				}
+			}
+			//System.out.println(arr1);
+			for (i = 0; i < arr2.size(); i++) {
+				if (arrResult.contains(arr2.get(i))) {
+					continue;
+				} else {
+					arrResult.add(arr2.get(i));
+				}
+			}
+			arrResult.sort(null);
+		} else if (mode == '-') {
+			arrResult.add(arr1.get(0));
+			for (i = 1; i < arr1.size(); i++) {
+				if (arr2.contains(arr1.get(i))) {
+					continue;
+				} else {
+					arrResult.add(arr1.get(i));
+				}
+			}
+			for (i = 0; i < arr2.size(); i++) {
+				if (arr1.contains(arr2.get(i))) {
+					continue;
+				} else {
+					arrResult.add(arr2.get(i));
+				}
+			}
+		} else if (mode == '*') {
+			for(i = 0; i < arr1.size(); i++) {
+				if(arr2.contains(arr1.get(i))) {
+					arrResult.add(arr1.get(i));
+				}
+			}
+		}
+		//System.out.println(arr2);
+		result += "[" + arrResult.get(0);
+		for(i = 1; i < arrResult.size(); i++) {
+			result += ", " + arrResult.get(i); 
+		}
+		result += "]";
+		return result;
 	}
 	
 }
